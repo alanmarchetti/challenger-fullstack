@@ -1,0 +1,107 @@
+.signinContainer {
+    width: 100vw;
+    height: 100vh;
+    background-color: #f0f2f5;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url('../../images/bg.svg');
+}
+
+.signinWrapper {
+    display: flex;
+    width: 70%;
+    height: 70%;
+    border-radius: 3px;
+}
+
+.signinRight, .signinLeft {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  
+}
+
+.signinRight {
+    -webkit-box-shadow: -6px -1px 10px 4px rgba(0,0,0,0.47); 
+    box-shadow: -6px -1px 10px 4px rgba(0,0,0,0.47);
+}
+
+.signinLeft {
+    text-align: center;
+}
+
+.signinLogo {
+    font-size: 50px;
+    font-weight: 700;
+    color: #1775ee;
+    margin-bottom: 10px;
+}
+
+.signinDesc {
+    font-size: 24px;
+}
+
+.signinBox {
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #FFF;
+    border-radius: 10px;
+}
+
+.signinText {
+    font-size: 38px;
+    margin-bottom: 25px;
+    align-self: center;
+    color: #1775ee;
+}
+
+.signinInput {
+    height: 46px;
+    padding-left: 20px;
+    border-radius: 3px;
+    border: 1px solid gray;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.signinInput:focus{
+    outline: none;
+}
+
+.signinButton {
+    height: 46px;
+    background-color: #1775ee;
+    color: #FFF;
+    font-size: 20px;
+    border-radius: 3px;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.signinButton:focus {
+    outline: none;
+}
+
+.signinButton:disabled {
+    cursor: not-allowed;
+}
+
+.signinRegisterButton {
+    width: 60%;
+    align-self: center;
+    height: 50px;
+    background-color: #42b72a;
+    color: #FFF;
+    font-size: 20px;
+    border-radius: 3px;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+}
