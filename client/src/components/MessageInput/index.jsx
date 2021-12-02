@@ -1,4 +1,6 @@
-import React from 'react'
+import React from 'react';
+
+import '../chat.css'
 
 export default function MessageInput({ sendMessage, message, setMessage }) {
     return (
@@ -6,7 +8,7 @@ export default function MessageInput({ sendMessage, message, setMessage }) {
             <input 
             className="msger-input" 
             type="text" 
-            placeholder="digite....."
+            placeholder="Digite uma mensagem....."
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             onKeyPress={(e) => e.key === 'Enter' ? sendMessage(e.target.value) : null }
@@ -16,7 +18,7 @@ export default function MessageInput({ sendMessage, message, setMessage }) {
             type="submit"
             onClick={(e) => sendMessage(e)}
             >
-            Send
+            Enviar mensagem
             </button>
         </form>
     )

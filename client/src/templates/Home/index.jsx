@@ -1,19 +1,24 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+
+// - componenets
 import Navbar from "../../components/Navbar";
-import { loadAllUsers } from "../../service/user";
-import "./index.css";
 import Users from "../../components/Users";
+
+import axios from "axios";
+
+// - styles
+import "./index.css";
 
 export default function Home() {
   const [users, setUsers] = useState([]);
   const [roomId, setRoomId] = useState("");
   const [username, setUsername] = useState("");
   const [search, setSearch] = useState("");
-
+ 
   const getAllUsers = async () => {
-    const data = await loadAllUsers();
-    setUsers(data);
+    const response = await axios.post("http://localhost:4444/api/user/");
+    setUsers(response.data.users);
   };
 
   const handleChange = async (e) => {
@@ -21,7 +26,7 @@ export default function Home() {
     setSearch(resp);
   };
 
-  const miranha = search
+  const filteredUSer = search
     ? users.filter((u) => {
         return u.name.toLowerCase().includes(search.toLowerCase());
       })
@@ -35,29 +40,29 @@ export default function Home() {
     <>
       <Navbar />
       <div className="homeContainer">
-        <input
-          style={{ height: "150px" }}
-          onChange={handleChange}
-          value={search}
-          type="search"
-        />
         <div className="contact">
           <div className="contactInfo">
+            <input
+              onChange={handleChange}
+              value={search}
+              type="search"
+              placeholder="Pesquise o nome do usuário"
+            />
             <h4>Lista de usuários</h4>
 
-            {miranha.length > 0 && <Users users={miranha} />}
+            {filteredUSer.length > 0 && <Users users={filteredUSer} />}
 
-            {miranha.length === 0 && <p>Não existem usuários!</p>}
+            {filteredUSer.length === 0 && <p>Não existem usuários!</p>}
           </div>
         </div>
 
         <div className="beginChat">
+          <h2>Inicie uma conversa</h2>
           <input
             type="text"
             placeholder="Nome do usuário"
             onChange={(e) => setUsername(e.target.value)}
           />
-
           <input
             type="text"
             placeholder="Room"
@@ -73,33 +78,3 @@ export default function Home() {
     </>
   );
 }
-
-/**
- * {miranha.length > 0 && <Users users={miranha} />}
-
-   {miranha.length === 0 && <p>Não existem usuários!</p>} 
-
-
-    const handleChange = async (e) => {
-    const resp = e.target.value;
-    setSearch(resp);
-    const res = await axios.post("http://localhost:4444/api/user/", resp);
-    const user = res.data.users;
-    // resp = igual ao que eu digitei
-    console.log(resp);
-    // lista com todos os usuarios
-    console.log(user);
-
-    miranha = search
-      ? user.filter((u) => {
-          return u.name.toLowerCase().includes(resp.toLowerCase());
-        })
-      : getAllUsers();
-
-    console.log(miranha);
-  };
-
-
-
-
- */

@@ -1,6 +1,8 @@
 import React from "react";
 import ReactEmoji from 'react-emoji';
 
+import '../chat.css'
+
 export default function Message({ message: { user, textContent }, username }) {
   let sendByThisUser = false;
   const trimmedUserName = username.trim().toLowerCase();

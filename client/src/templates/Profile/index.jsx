@@ -36,7 +36,8 @@ export default function Profile() {
             <input type="text" placeholder="Sobrenome usuario" ref={lastname} />
             <input type="text" placeholder="Telefone usuario" ref={phone} />
             <input type="text" placeholder="Cpf usuario" />
-            <button type="submit">Atualizar</button>
+            <button type="submit" className="updateAccount">Atualizar</button>
+            <button type="submit" className="removeAccount">Remover conta</button>
           </form>
         </div>
       </div>

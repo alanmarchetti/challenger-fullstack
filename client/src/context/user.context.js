@@ -1,5 +1,8 @@
 import { createContext, useState, useEffect } from "react";
+import { toast } from 'react-toastify';
 import axios from "axios";
+
+
 export const UserContext = createContext({});
 
 export const UserProvider = ({ children }) => {
@@ -57,12 +60,15 @@ export const UserProvider = ({ children }) => {
   };
 
   const removerLocalStorage = (e) => {
+    alert('Tem certeza que deseja sair?')
+    toast.warning('Adeus')
     localStorage.removeItem("USER");
     setUser(null);
   };
 
   const deleteUsers = async (e) => {
     await axios.delete(`http://localhost:4444/api/user/${user._id}`);
+    toast.error('Sua conta foi removida')
     localStorage.removeItem("USER");
     setUser(null);
   };

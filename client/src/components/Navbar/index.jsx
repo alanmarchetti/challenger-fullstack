@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../../context/user.context";
+import { ExitToApp, Person, Settings } from '@material-ui/icons';
 import "./index.css";
 
 export default function Navbar() {
@@ -9,41 +10,39 @@ export default function Navbar() {
   return (
     <div className="navbarContainer">
       <div className="navbarLeft">
+        
         <Link to="/" style={{ textDecoration: "none" }}>
+          
           <span className="logo">ChatApp</span>
         </Link>
       </div>
-
-      <div className="navbarCenter">
-        <div className="searchbar">
-          <input
-            type="search"
-            placeholder="Procure por amigos"
-            className="searchInput"
-          />
-        </div>
-      </div>
+     
+     
 
       <div className="navbarRight">
         <div className="navbarLinks">
-          <span className="navbarLink"> {user.name} </span>
+          <span className="navbarLink text"> 
+          {user.name} 
+          </span>
           <Link to="/profile">
-            <span className="navbarLink">Perfil</span>
+            <span className="navbarLink"><Person/></span>
           </Link>
           <span className="navbarLink">
             <button
               onClick={() => removerLocalStorage()}
               className="navbarButton"
             >
-              Sair
+            <ExitToApp/>
             </button>
           </span>
+         
           <span className="navbarLink">
             <button onClick={() => deleteUsers()} className="navbarButton">
-              Remover conta
+              <Settings/>
             </button>
           </span>
         </div>
+        
       </div>
     </div>
   );

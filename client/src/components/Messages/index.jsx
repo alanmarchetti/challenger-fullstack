@@ -1,6 +1,8 @@
 import { useRef, useEffect } from "react";
 import Message from "../Message";
 
+import '../chat.css'
+
 export default function Messages({ messages, username }) {
   const messagesEnd = useRef(null);
 
