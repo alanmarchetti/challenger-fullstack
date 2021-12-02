@@ -24,7 +24,7 @@
 
 ## Parte 03
 
-[  ] - Consumir os serviços da api no client
+[ x ] - Consumir os serviços da api no client
 [ x ] - cadastrar um usuário
 [ x ] - logar um usuário
 [ x ] - exibi informações na home
@@ -37,4 +37,4 @@
 
 ## Parte 04 
 
-[ ] - Chat
+[x] - Chat

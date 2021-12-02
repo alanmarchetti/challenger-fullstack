@@ -24,10 +24,10 @@ export const UserProvider = ({ children }) => {
     const response = await axios.post('http://localhost:4444/api/auth/signin', {
         cpf,
       });
-      setUser(response);
-      saveLocalStorage(response);
+      setUser(response.data.user);
+      saveLocalStorage(response.data.user);
       setLoadingAuth(false);
-      console.log(response)
+      console.log(response.data.user)
   };
 
   const signup = async (name, lastname, phone, cpf) => {
@@ -37,8 +37,8 @@ export const UserProvider = ({ children }) => {
       phone,
       cpf,
     });
-    setUser(response.data);
-    saveLocalStorage(response.data);
+    setUser(response.data.user);
+    saveLocalStorage(response.data.user);
     setLoadingAuth(false);
   };
 
@@ -47,7 +47,7 @@ export const UserProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{ signed: !!user, user, signin, signup, loading, loadingAuth }}>
+    <UserContext.Provider value={{ signed: !!user, user, signin, signup, loading, loadingAuth, setUser }}>
       {children}
     </UserContext.Provider>
   );
