@@ -1,34 +1,43 @@
-import Navbar from '../../components/Navbar';
+import { useState, useEffect } from "react";
+import Navbar from "../../components/Navbar";
 
-import './index.css';
+import axios from "axios";
+import "./index.css";
 
 export default function Home() {
-    return (
-        <>
-        <Navbar/>
-        <div className="homeContainer">
-           <div className="contact">
+  const [user, setUser] = useState([]);
 
-            <div className="contactInfo">
-                <h4>Lista de usuários</h4>
-                <span>usuario 01</span>
-                <span>usuario 01</span>
-                <span>usuario 01</span>
-                <span>usuario 01</span>
-                <span>usuario 01</span>
-                <span>usuario 01</span>
-                <span>usuario 01</span>
-            </div>
+  useEffect(() => {
+    const getUsers = async () => {
+        const response = await axios.get('http://localhost:4444/api/user/all');
+        setUser(response.data.users);
+    };
+    getUsers();
+  }, []);
 
-           </div>
+  console.log(user)
 
-           <div className="beginChat">
-            <input type="text" placeholder="Nome do usuário"/>
-            <input type="text" placeholder="Room"/>
-            <button className="initializeButtonChat">Iniciar chat</button>
-           </div>
+  return (
+    <>
+      <Navbar />
+      <div className="homeContainer">
+        <div className="contact">
+          <div className="contactInfo">
+            <h4>Lista de usuários</h4>
+            {user.map((u, i) => (
+                <>
+                <span key={i} >{u.name} {u.lastname}</span>
+                </>
+            ))}
+          </div>
+        </div>
 
-         </div>
-        </>
-    )
+        <div className="beginChat">
+          <input type="text" placeholder="Nome do usuário" />
+          <input type="text" placeholder="Room" />
+          <button className="initializeButtonChat">Iniciar chat</button>
+        </div>
+      </div>
+    </>
+  );
 }

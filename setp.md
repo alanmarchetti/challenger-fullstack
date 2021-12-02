@@ -9,7 +9,7 @@
 
 ## Parte 02 
 
-[ ] - finalizar a construção da api fornecer serviço ao front
+[ x ] - finalizar a construção da api fornecer serviço ao front
 
 [ x ] - criar o servidor 
 [ x ] - inicializar o servidor (porta: 4444)
@@ -24,11 +24,11 @@
 
 ## Parte 03
 
-[ ] - Consumir os serviços da api no client
-[ ] - cadastrar um usuário
-[ ] - logar um usuário
-[ ] - exibi informações na home
-[ ] - redirecinamento e rotas das paginas
+[  ] - Consumir os serviços da api no client
+[ x ] - cadastrar um usuário
+[ x ] - logar um usuário
+[ x ] - exibi informações na home
+[ x ] - redirecinamento e rotas das paginas
 [ ] - buscar um usuário
 [ ] - deslogar um usuário
 [ ] - remover uma conta

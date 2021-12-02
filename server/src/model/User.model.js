@@ -4,22 +4,19 @@ const UserSchema = mongoose.Schema(
   {
     name: {
       type: String,
-      required: true,
+      require: true,
     },
-
-    lastname: {
+    lastName: {
       type: String,
-      required: true,
+      require: true,
     },
-
     phone: {
       type: String,
-      required: true,
+      require: true,
     },
-
     cpf: {
       type: String,
-      required: true,
+      require: true,
     },
   },
   { timestamps: true }

@@ -1,4 +1,4 @@
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 // components
 import Signin from "../templates/Signin";
@@ -8,21 +8,11 @@ import Profile from "../templates/Profile";
 
 export default function RoutesWrapper() {
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route path="/signin">
-          <Signin />
-        </Route>
-        <Route path="/signup">
-          <Signup />
-        </Route>
-        <Route path="/profile">
-          <Profile/>
-        </Route>
-      </Switch>
-    </BrowserRouter>
+    <Switch>
+      <Route path="/signin" component={Signin} />
+      <Route path="/signup" component={Signup} />
+      <Route exact path="/" component={Home}  />
+      <Route path="/profile" component={Profile}  />
+    </Switch>
   );
 }

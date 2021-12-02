@@ -1,52 +1,50 @@
 .homeContainer {
-    display: flex;
+  display: flex;
 }
 
 .contact {
-    flex: 4;
-    height: calc(100vh - 80px);
-    border: 1px solid red;
+  flex: 4;
+  height: calc(100vh - 80px);
 }
 
 .contactInfo {
-    width: 80%;
-    height: 100%;
-    margin: 0 auto;
-    border: 1px solid black;
-    
-    display: flex;
-    flex-direction: column;
-    align-items: center;  
+  width: 80%;
+  height: 100%;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .contactInfo h4 {
-    margin-top: 15px;
-    font-size: 25px;
+  margin-top: 15px;
+  font-size: 25px;
 }
 
 .contactInfo span {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .beginChat {
-    flex: 6;
-    height: calc(100vh - 80px);
-    border: 1px solid red;
+  flex: 6;
+  height: calc(100vh - 80px);
+  border: 1px solid red;
 
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    padding-left: 45px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding-left: 45px;
 }
 
 .beginChat input {
-    width: 380px;
-    height: 46px;
-    margin-bottom: 15px;
+  width: 380px;
+  height: 46px;
+  margin-bottom: 15px;
 }
 
 .initializeButtonChat {
-    width: 380px;
-    height: 46px;
+  width: 380px;
+  height: 46px;
 }
