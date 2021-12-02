@@ -1,29 +1,11 @@
 import { createContext, useState, useEffect } from "react";
 import axios from "axios";
-import { loadAllUsers } from "../service/user";
 export const UserContext = createContext({});
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [users, setUsers] = useState("");
   const [loading, setLoading] = useState(true);
   const [loadingAuth, setLoadingAuth] = useState(false);
-  const [search, setSearch] = useState("");
-
-  // acesso ao array com tds os usuarios da ap
-  const getAllUsers = async () => {
-    const data = await loadAllUsers();
-    setUsers(data);
-  };
-
-  const handleChange = (e) => {
-    const { value } = e.target;
-    setSearch(value);
-  };
-
-  useEffect(() => {
-    getAllUsers();
-  }, []);
 
   useEffect(() => {
     function loadStorage() {
@@ -59,6 +41,17 @@ export const UserProvider = ({ children }) => {
     setLoadingAuth(false);
   };
 
+  const updateUser = async ({ name, lastname, phone }) => {
+    const data = { name, lastname, phone };
+    const res = await axios.post(
+      `http://localhost:4444/api/user/${user._id}`,
+      data
+    );
+    setUser(res.data.user);
+    saveLocalStorage(res.data.user);
+    console.log(res.data.user);
+  };
+
   const saveLocalStorage = (data) => {
     localStorage.setItem("USER", JSON.stringify(data));
   };
@@ -69,14 +62,10 @@ export const UserProvider = ({ children }) => {
   };
 
   const deleteUsers = async (e) => {
-    const response = await axios.delete(
-      `http://localhost:4444/api/user/${user._id}`
-    );
+    await axios.delete(`http://localhost:4444/api/user/${user._id}`);
     localStorage.removeItem("USER");
     setUser(null);
   };
-
- 
 
   return (
     <UserContext.Provider
@@ -88,11 +77,9 @@ export const UserProvider = ({ children }) => {
         loading,
         loadingAuth,
         setUser,
-        search,
-        handleChange,
-        users,
         removerLocalStorage,
-        deleteUsers
+        deleteUsers,
+        updateUser,
       }}
     >
       {children}

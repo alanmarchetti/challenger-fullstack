@@ -10,6 +10,8 @@ routes.get("/:id", userController.findOneUser);
 // editar um usuario
 routes.post("/:id", userController.updateUser);
 
+routes.post('/', userController.findUser);
+
 // excluir um usuario
 routes.delete("/:id", userController.removeUser);
 

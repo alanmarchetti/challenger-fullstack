@@ -10,6 +10,16 @@ async function findAllUsers(request, response) {
   }
 }
 
+async function findUser(request, response) {
+  const { name } = request.body;
+
+  const users = name
+    ? await User.findOne({name: name})
+    : await User.find();
+
+  return response.json({ success: true, users });
+}
+
 async function findOneUser(request, response) {
   const { id } = request.params;
 
@@ -50,9 +60,9 @@ async function updateUser(request, response) {
     updates.phone = phone;
   }
 
-  await User.findByIdAndUpdate(id, { $set: updates });
+  const user = await User.findByIdAndUpdate(id, { $set: updates });
 
-  response.json({ sucess: true, updates });
+  response.json({ sucess: true, user });
 }
 
 async function removeUser(request, response) {
@@ -65,4 +75,4 @@ async function removeUser(request, response) {
   }
 }
 
-module.exports = { findAllUsers, findOneUser, updateUser, removeUser };
+module.exports = { findAllUsers, findOneUser, updateUser, removeUser, findUser };

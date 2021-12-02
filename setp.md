@@ -30,8 +30,8 @@
 [ x ] - exibi informações na home
 [ x ] - redirecinamento e rotas das paginas
 [ ] - buscar um usuário
-[ ] - deslogar um usuário
-[ ] - remover uma conta
+[ x ] - deslogar um usuário
+[ x ] - remover uma conta
 [ ] - editar*
 [ x ] - validação dos dados
 [ x ] - validacao das rotas autenticas da aplicacao

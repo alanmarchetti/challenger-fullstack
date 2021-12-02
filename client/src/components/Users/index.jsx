@@ -5,7 +5,7 @@ export default function Users({ users }) {
     <>
       {users.map((u, i) => (
         <>
-          <span key={i}>
+          <span>
             {u.name} {u.lastname}
           </span>
         </>

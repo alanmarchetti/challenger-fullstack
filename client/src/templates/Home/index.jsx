@@ -1,51 +1,57 @@
-import { useState, useEffect, useContext } from "react";
-import { UserContext } from "../../context/user.context";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Users from "../../components/Users";
 import Navbar from "../../components/Navbar";
+import { loadAllUsers } from "../../service/user";
 import "./index.css";
-
-import { TextInput } from '../../components/Input'
+import Users from "../../components/Users";
 
 export default function Home() {
-  //const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState([]);
   const [roomId, setRoomId] = useState("");
   const [username, setUsername] = useState("");
-  //const [search, setSearch] = useState("");
-  const { users, search } = useContext(UserContext);
+  const [search, setSearch] = useState("");
 
-   const filteredUsers = search
-   ? users.filter((u) => {
-       return (
-         u.name.toLowerCase().includes(search.toLowerCase()) ||
-         u.lastname.includes(search) ||
-         u.lastname.includes(search.toLowerCase())
-       );
-     })
-   : users;
- 
+  const getAllUsers = async () => {
+    const data = await loadAllUsers();
+    setUsers(data);
+  };
+
+  const handleChange = async (e) => {
+    const resp = e.target.value;
+    setSearch(resp);
+  };
+
+  const miranha = search
+    ? users.filter((u) => {
+        return u.name.toLowerCase().includes(search.toLowerCase());
+      })
+    : users;
+
+  useEffect(() => {
+    getAllUsers();
+  }, []);
+
   return (
     <>
       <Navbar />
       <div className="homeContainer">
-      <TextInput />
+        <input
+          style={{ height: "150px" }}
+          onChange={handleChange}
+          value={search}
+          type="search"
+        />
         <div className="contact">
-      
           <div className="contactInfo">
             <h4>Lista de usuários</h4>
-            
-            <div>
 
-            {filteredUsers.length > 0 && <Users users={filteredUsers} />}
+            {miranha.length > 0 && <Users users={miranha} />}
 
-            {filteredUsers.length === 0 && <p>Não existem usuários!</p>}
-
-            </div>
+            {miranha.length === 0 && <p>Não existem usuários!</p>}
           </div>
         </div>
 
         <div className="beginChat">
-            
           <input
             type="text"
             placeholder="Nome do usuário"
@@ -68,8 +74,32 @@ export default function Home() {
   );
 }
 
+/**
+ * {miranha.length > 0 && <Users users={miranha} />}
 
-/***
- * 
-  
+   {miranha.length === 0 && <p>Não existem usuários!</p>} 
+
+
+    const handleChange = async (e) => {
+    const resp = e.target.value;
+    setSearch(resp);
+    const res = await axios.post("http://localhost:4444/api/user/", resp);
+    const user = res.data.users;
+    // resp = igual ao que eu digitei
+    console.log(resp);
+    // lista com todos os usuarios
+    console.log(user);
+
+    miranha = search
+      ? user.filter((u) => {
+          return u.name.toLowerCase().includes(resp.toLowerCase());
+        })
+      : getAllUsers();
+
+    console.log(miranha);
+  };
+
+
+
+
  */
