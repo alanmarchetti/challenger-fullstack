@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { UserContext } from "../../context/user.context";
 import { Link, useHistory } from "react-router-dom";
+import { toast } from 'react-toastify';
 import "./index.css";
 
 export default function Signup() {
@@ -16,8 +17,12 @@ export default function Signup() {
     try {
       await signup(name, lastname, phone, cpf);
       history.push("/");
-    } catch (err) {
-      alert(err);
+    } catch (error) {
+      if (error.response) {
+        toast.error(`${error.response.data.msg}`)
+        
+       
+      }
     }
   };
 

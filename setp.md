@@ -4,7 +4,7 @@
 [ x ] - login
 [ x ] - cadastro
 [ x ] - home
-[ ] - chat
+[ x ] - chat
 [ x ] - editar perfil
 
 ## Parte 02 
@@ -33,8 +33,11 @@
 [ ] - deslogar um usuário
 [ ] - remover uma conta
 [ ] - editar*
+[ x ] - validação dos dados
 
 
 ## Parte 04 
 
 [x] - Chat
+[] - Arrumar o layout do chat
+[] - Arrumar o nome da sala do chat de acordo com o usuario que estiver logado

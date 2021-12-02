@@ -65,3 +65,11 @@
     cursor: pointer;
 }
 
+.navbarButton {
+    color: #fff;
+    border: none;
+    outline: none;
+    background-color: #1775ee;
+    font-size: 18px;
+    cursor: pointer;
+}

@@ -61,6 +61,11 @@ body {
   font-family: Helvetica, sans-serif;
 }
 
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
 .msger {
   display: flex;
   flex-flow: column wrap;

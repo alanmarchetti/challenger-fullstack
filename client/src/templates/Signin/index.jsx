@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { UserContext } from "../../context/user.context";
 import { Link, useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 import "./index.css";
 
 export default function Signin() {
@@ -12,9 +13,12 @@ export default function Signin() {
     event.preventDefault();
     try {
       await signin(cpf);
+      toast.success("Bem vindo de volta");
       history.push("/");
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      if (error.response) {
+        toast.error(`${error.response.data.msg}`);
+      }
     }
   };
 

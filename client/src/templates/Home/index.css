@@ -3,12 +3,14 @@
 }
 
 .contact {
-  flex: 4;
+  flex: 2;
   height: calc(100vh - 80px);
+  -webkit-box-shadow: 8px 1px 12px 0px rgba(0, 0, 0, 0.55);
+  box-shadow: 8px 1px 12px 0px rgba(0, 0, 0, 0.55);
 }
 
 .contactInfo {
-  width: 80%;
+  width: 50%;
   height: 100%;
   margin: 0 auto;
 
@@ -20,16 +22,18 @@
 .contactInfo h4 {
   margin-top: 15px;
   font-size: 25px;
+  color: #1775ee;
 }
 
 .contactInfo span {
   margin-top: 20px;
+  font-weight: 500;
+  font-size: 18px;
 }
 
 .beginChat {
   flex: 6;
   height: calc(100vh - 80px);
-  border: 1px solid red;
 
   display: flex;
   flex-direction: column;
@@ -44,7 +48,12 @@
   margin-bottom: 15px;
 }
 
+.beginChat input:focus{
+  outline: none;
+}
+
 .initializeButtonChat {
   width: 380px;
   height: 46px;
 }
+

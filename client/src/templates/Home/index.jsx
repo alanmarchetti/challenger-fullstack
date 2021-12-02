@@ -1,45 +1,51 @@
-//import { UserContext } from "../../context/user.context";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { UserContext } from "../../context/user.context";
 import { Link } from "react-router-dom";
+import Users from "../../components/Users";
 import Navbar from "../../components/Navbar";
-
-import axios from "axios";
 import "./index.css";
 
+import { TextInput } from '../../components/Input'
+
 export default function Home() {
-  //const { user, setUser } = useContext(UserContext);
-  const [users, setUsers] = useState([]);
+  //const [users, setUsers] = useState([]);
   const [roomId, setRoomId] = useState("");
   const [username, setUsername] = useState("");
+  //const [search, setSearch] = useState("");
+  const { users, search } = useContext(UserContext);
 
-  useEffect(() => {
-    const getUsers = async () => {
-      const response = await axios.get("http://localhost:4444/api/user/all");
-      setUsers(response.data.users);
-    };
-    getUsers();
-  }, []);
-
-  useEffect(() => {}, []);
-
+   const filteredUsers = search
+   ? users.filter((u) => {
+       return (
+         u.name.toLowerCase().includes(search.toLowerCase()) ||
+         u.lastname.includes(search) ||
+         u.lastname.includes(search.toLowerCase())
+       );
+     })
+   : users;
+ 
   return (
     <>
       <Navbar />
       <div className="homeContainer">
+      <TextInput />
         <div className="contact">
+      
           <div className="contactInfo">
             <h4>Lista de usuários</h4>
-            {users.map((u, i) => (
-              <>
-                <span key={i}>
-                  {u.name} {u.lastname}
-                </span>
-              </>
-            ))}
+            
+            <div>
+
+            {filteredUsers.length > 0 && <Users users={filteredUsers} />}
+
+            {filteredUsers.length === 0 && <p>Não existem usuários!</p>}
+
+            </div>
           </div>
         </div>
 
         <div className="beginChat">
+            
           <input
             type="text"
             placeholder="Nome do usuário"
@@ -52,7 +58,7 @@ export default function Home() {
             onChange={(e) => setRoomId(e.target.value)}
           />
           <Link
-            to={username && roomId ? `/chatting/${roomId}/${username}` : ''}
+            to={username && roomId ? `/chatting/${roomId}/${username}` : ""}
           >
             <button className="initializeButtonChat">Iniciar chat</button>
           </Link>
@@ -61,3 +67,9 @@ export default function Home() {
     </>
   );
 }
+
+
+/***
+ * 
+  
+ */

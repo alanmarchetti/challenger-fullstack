@@ -11,8 +11,9 @@ async function signin(request, response) {
 
   const user = await User.findOne({ cpf: cpf });
   if (!user) {
-    response.status(400).json({ success: false, mgs: "Cpf não encontrado" });
-    return;
+    return response
+      .status(400)
+      .json({ success: false, msg: "Cpf não encontrado" });
   }
 
   response.status(200).json({ success: true, user });
