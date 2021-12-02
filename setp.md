@@ -34,6 +34,7 @@
 [ ] - remover uma conta
 [ ] - editar*
 [ x ] - validação dos dados
+[ x ] - validacao das rotas autenticas da aplicacao
 
 
 ## Parte 04 

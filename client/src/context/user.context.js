@@ -1,32 +1,29 @@
 import { createContext, useState, useEffect } from "react";
-import axios from 'axios';
+import axios from "axios";
 import { loadAllUsers } from "../service/user";
 export const UserContext = createContext({});
 
 export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState(null);
   const [users, setUsers] = useState("");
   const [loading, setLoading] = useState(true);
   const [loadingAuth, setLoadingAuth] = useState(false);
   const [search, setSearch] = useState("");
 
+  // acesso ao array com tds os usuarios da ap
+  const getAllUsers = async () => {
+    const data = await loadAllUsers();
+    setUsers(data);
+  };
 
-    // acesso ao array com tds os usuarios da ap
-    const getAllUsers = async () => {
-      const data = await loadAllUsers();
-      setUsers(data);
-    };
+  const handleChange = (e) => {
+    const { value } = e.target;
+    setSearch(value);
+  };
 
-    const handleChange = (e) => {
-      const { value } = e.target;
-      setSearch(value);
-    };
-  
-  
-    useEffect(() => {
-        getAllUsers();
-    }, [])
-  
+  useEffect(() => {
+    getAllUsers();
+  }, []);
 
   useEffect(() => {
     function loadStorage() {
@@ -40,15 +37,14 @@ export const UserProvider = ({ children }) => {
     loadStorage();
   }, []);
 
-
-  const signin = async ( cpf ) => {
-    const response = await axios.post('http://localhost:4444/api/auth/signin', {
-        cpf,
-      });
-      setUser(response.data.user);
-      saveLocalStorage(response.data.user);
-      setLoadingAuth(false);
-      console.log(response.data.user)
+  const signin = async (cpf) => {
+    const response = await axios.post("http://localhost:4444/api/auth/signin", {
+      cpf,
+    });
+    setUser(response.data.user);
+    saveLocalStorage(response.data.user);
+    setLoadingAuth(false);
+    console.log(response.data.user);
   };
 
   const signup = async (name, lastname, phone, cpf) => {
@@ -67,8 +63,38 @@ export const UserProvider = ({ children }) => {
     localStorage.setItem("USER", JSON.stringify(data));
   };
 
+  const removerLocalStorage = (e) => {
+    localStorage.removeItem("USER");
+    setUser(null);
+  };
+
+  const deleteUsers = async (e) => {
+    const response = await axios.delete(
+      `http://localhost:4444/api/user/${user._id}`
+    );
+    localStorage.removeItem("USER");
+    setUser(null);
+  };
+
+ 
+
   return (
-    <UserContext.Provider value={{ signed: !!user, user, signin, signup, loading, loadingAuth, setUser, search, handleChange, users }}>
+    <UserContext.Provider
+      value={{
+        signed: !!user,
+        user,
+        signin,
+        signup,
+        loading,
+        loadingAuth,
+        setUser,
+        search,
+        handleChange,
+        users,
+        removerLocalStorage,
+        deleteUsers
+      }}
+    >
       {children}
     </UserContext.Provider>
   );

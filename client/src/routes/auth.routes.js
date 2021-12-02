@@ -1,5 +1,4 @@
-/**
- * import { useContext } from "react";
+import { useContext } from "react";
 import { Route, Redirect } from "react-router";
 import { UserContext } from "../context/user.context";
 
@@ -26,5 +25,3 @@ export default function RoutesWrapper({
 
   return <Route {...rest} render={(props) => <Component {...props} />} />;
 }
-
- */

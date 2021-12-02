@@ -1,5 +1,5 @@
-import { Switch, Route } from "react-router-dom";
-
+import { Switch } from "react-router-dom";
+import Route from './auth.routes';
 // components
 import Signin from "../templates/Signin";
 import Signup from "../templates/Signup";
@@ -10,12 +10,16 @@ import ChatPlatForm from "../templates/ChatPlatForm"
 export default function RoutesWrapper() {
   return (
     <Switch>
-      <Route path="/signin" component={Signin} />
+      <Route exact path="/" component={Signin} />
       <Route path="/signup" component={Signup} />
-      <Route exact path="/" component={Home}  />
-      <Route path="/profile" component={Profile}  />
-      <Route path="/chatting/:roomId/:username" component={ChatPlatForm}/>
+      <Route path="/home" component={Home} isPrivate  />
+      <Route path="/profile" component={Profile} isPrivate />
+      <Route path="/chatting/:roomId/:username" component={ChatPlatForm} isPrivate/>
     </Switch>
   );
 }
 
+/**
+      <Route path="/signin" component={Signin} />
+ * 
+ */
