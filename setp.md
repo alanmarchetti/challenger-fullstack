@@ -42,3 +42,5 @@
 [ x ] - Chat
 [ x ] - Arrumar o layout do chat
 [ x ] - Arrumar o nome da sala do chat de acordo com o usuario que estiver logado
+
+## Finalizado [X]
