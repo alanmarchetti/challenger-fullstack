@@ -2,7 +2,6 @@ import { createContext, useState, useEffect } from "react";
 import { toast } from 'react-toastify';
 import axios from "axios";
 
-
 export const UserContext = createContext({});
 
 export const UserProvider = ({ children }) => {
@@ -22,6 +21,7 @@ export const UserProvider = ({ children }) => {
     loadStorage();
   }, []);
 
+  // - logar usuário
   const signin = async (cpf) => {
     const response = await axios.post("http://localhost:4444/api/auth/signin", {
       cpf,
@@ -32,6 +32,7 @@ export const UserProvider = ({ children }) => {
     console.log(response.data.user);
   };
 
+  // - criar um usuário
   const signup = async (name, lastname, phone, cpf) => {
     const response = await axios.post("http://localhost:4444/api/auth/signup", {
       name,
@@ -44,6 +45,7 @@ export const UserProvider = ({ children }) => {
     setLoadingAuth(false);
   };
 
+  // - atualziar um usuário
   const updateUser = async ({ name, lastname, phone }) => {
     const data = { name, lastname, phone };
     const res = await axios.post(
@@ -55,10 +57,12 @@ export const UserProvider = ({ children }) => {
     console.log(res.data.user);
   };
 
+  // - salvar o usuaŕio logado ou cadastrado no localStorage
   const saveLocalStorage = (data) => {
     localStorage.setItem("USER", JSON.stringify(data));
   };
 
+  // - remover o usuaŕio logado ou cadastrado no localStorage
   const removerLocalStorage = (e) => {
     alert('Tem certeza que deseja sair?')
     toast.warning('Adeus')
@@ -66,6 +70,7 @@ export const UserProvider = ({ children }) => {
     setUser(null);
   };
 
+  // - remover um usuário do sistema
   const deleteUsers = async (e) => {
     await axios.delete(`http://localhost:4444/api/user/${user._id}`);
     toast.error('Sua conta foi removida')

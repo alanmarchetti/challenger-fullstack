@@ -82,6 +82,4 @@ io.on('connection', (socket) => {
 
 });
 
-
-
 httpServer.listen(process.env.PORT, () => console.log('Servidor inicializado....'));

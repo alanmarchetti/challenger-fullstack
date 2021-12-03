@@ -41,9 +41,7 @@ export default function Signin() {
               name={cpf}
               onChange={(event) => setCpf(event.target.value)}
             />
-            <button className="signinButton">
-              Acessar
-            </button>
+            <button className="signinButton">Acessar</button>
             <button className="signinRegisterButton">
               <Link to="/signup">Cadastrar</Link>
             </button>

@@ -27,7 +27,6 @@ async function singup(request, response) {
       .status(400)
       .json({ sucess: false, msg: "Preencha os campos" });
 
-  // validar o telefone
   let phoneValid = phone.length;
   let cpfValid = validarCpf(cpf);
 
@@ -41,7 +40,6 @@ async function singup(request, response) {
       .json({ sucess: false, msg: "Insira um telefone válido" });
   }
 
-  // validar cpf
   if (cpfValid === false)
     return response
       .status(401)
@@ -63,7 +61,7 @@ async function singup(request, response) {
 
   try {
     const user = await newUser.save();
-    response.status(200).json({ success: true, user });
+    response.status(201).json({ success: true, user });
   } catch (e) {
     return response.status(500).json(e);
   }

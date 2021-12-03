@@ -18,8 +18,3 @@ export default function RoutesWrapper() {
     </Switch>
   );
 }
-
-/**
-      <Route path="/signin" component={Signin} />
- * 
- */

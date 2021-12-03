@@ -29,16 +29,16 @@
 [ x ] - logar um usuário
 [ x ] - exibi informações na home
 [ x ] - redirecinamento e rotas das paginas
-[ ] - buscar um usuário
+[ x ] - buscar um usuário
 [ x ] - deslogar um usuário
 [ x ] - remover uma conta
-[ ] - editar*
+[ x ] - editar*
 [ x ] - validação dos dados
 [ x ] - validacao das rotas autenticas da aplicacao
 
 
 ## Parte 04 
 
-[x] - Chat
-[] - Arrumar o layout do chat
-[] - Arrumar o nome da sala do chat de acordo com o usuario que estiver logado
+[ x ] - Chat
+[ x ] - Arrumar o layout do chat
+[ x ] - Arrumar o nome da sala do chat de acordo com o usuario que estiver logado

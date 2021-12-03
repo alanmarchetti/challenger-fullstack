@@ -24,14 +24,14 @@ async function findOneUser(request, response) {
   const { id } = request.params;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    response.status(400).json({ error: "ID inválido" });
+    response.status(401).json({ error: "ID inválido" });
     return;
   }
 
   const user = await User.findById(id);
   if (user == null)
     return response
-      .status(400)
+      .status(401)
       .json({ sucess: false, msg: "Usuario não encontrado!" });
 
   response.status(200).json({ sucess: true, user });
@@ -42,7 +42,7 @@ async function updateUser(request, response) {
   let { name, lastname, phone } = request.body;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    response.status(400).json({ error: "ID inválido" });
+    response.status(401).json({ error: "ID inválido" });
     return;
   }
 

@@ -1,13 +1,9 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
-// - componenets
 import Navbar from "../../components/Navbar";
 import Users from "../../components/Users";
-
 import axios from "axios";
 
-// - styles
 import "./index.css";
 
 export default function Home() {
@@ -15,7 +11,7 @@ export default function Home() {
   const [roomId, setRoomId] = useState("");
   const [username, setUsername] = useState("");
   const [search, setSearch] = useState("");
- 
+
   const getAllUsers = async () => {
     const response = await axios.post("http://localhost:4444/api/user/");
     setUsers(response.data.users);

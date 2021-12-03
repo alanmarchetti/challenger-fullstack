@@ -29,27 +29,30 @@ export default function ChatPlatForm() {
 
   useEffect(() => {
     socket.on("message", (message) => {
-      setMessages((messages) => [...messages, message])
+      setMessages((messages) => [...messages, message]);
     });
 
     socket.on("roomData", ({ users }) => {
-      setUsers(users)
+      setUsers(users);
     });
-
   }, []);
 
   const sendMessage = (e) => {
     e.preventDefault();
-    if(message){
-      socket.emit("sendMessage", message, () => setMessage(''));
+    if (message) {
+      socket.emit("sendMessage", message, () => setMessage(""));
     }
-  }
+  };
 
   return (
     <section className="msger">
       <Header roomId={roomId} />
-      <Messages messages={messages} username={username}/>
-      <MessageInput sendMessage={sendMessage} message={message} setMessage={setMessage} />
+      <Messages messages={messages} username={username} />
+      <MessageInput
+        sendMessage={sendMessage}
+        message={message}
+        setMessage={setMessage}
+      />
     </section>
   );
 }

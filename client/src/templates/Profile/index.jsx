@@ -4,12 +4,12 @@ import Navbar from "../../components/Navbar";
 import "./index.css";
 
 export default function Profile() {
-  const { updateUser } = useContext(UserContext);
+  const { user, updateUser, deleteUsers } = useContext(UserContext);
   const name = useRef();
   const lastname = useRef();
   const phone = useRef();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async () => {
     try {
       await updateUser({
         name: name.current.value,
@@ -32,12 +32,25 @@ export default function Profile() {
         <div className="profileContent">
           <div className="profileContentHeader">Edite sua conta</div>
           <form className="profileContentInfoUser" onSubmit={handleSubmit}>
-            <input type="text" placeholder="Nome usuario" ref={name} />
-            <input type="text" placeholder="Sobrenome usuario" ref={lastname} />
-            <input type="text" placeholder="Telefone usuario" ref={phone} />
-            <input type="text" placeholder="Cpf usuario" />
-            <button type="submit" className="updateAccount">Atualizar</button>
-            <button type="submit" className="removeAccount">Remover conta</button>
+            <input type="text" placeholder={user.name} ref={name} />
+            <input type="text" placeholder={user.lastname} ref={lastname} />
+            <input
+              type="text"
+              placeholder={user.phone}
+              minLength="11"
+              ref={phone}
+            />
+            <input type="text" placeholder={user.cpf} disabled />
+            <button type="submit" className="updateAccount">
+              Atualizar
+            </button>
+            <button
+              type="submit"
+              className="removeAccount"
+              onClick={() => deleteUsers()}
+            >
+              Remover conta
+            </button>
           </form>
         </div>
       </div>
