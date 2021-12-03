@@ -34,7 +34,8 @@
   margin-top: 15px;
 }
 
-.removeAccount, .updateAccount {
+.removeAccount,
+.updateAccount {
   width: 100%;
   height: 46px;
   margin-top: 15px;

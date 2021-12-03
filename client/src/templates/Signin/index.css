@@ -1,12 +1,11 @@
 .signinContainer {
   width: 100vw;
   height: 100vh;
-  background-color: #1775ee ;
+  background-color: #1775ee;
 
   display: flex;
   align-items: center;
   justify-content: center;
-  
 }
 
 .signinWrapper {
